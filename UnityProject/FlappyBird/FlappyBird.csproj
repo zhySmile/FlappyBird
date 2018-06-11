@@ -295,10 +295,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\AudioManager.cs" />
-    <Compile Include="Assets\Script\BirdManager.cs" />
-    <Compile Include="Assets\Script\SceneManager.cs" />
     <Compile Include="Assets\Script\ScoreManager.cs" />
-    <Compile Include="Assets\Script\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\Users\65258\AppData\Local\Unity\cache\packages\packages.unity.com\com.unity.package-manager-ui@1.8.8\Editor\Resources\Styles\Main_Dark.uss" />
