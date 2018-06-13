@@ -4,20 +4,32 @@ using UnityEngine;
 
 public class Channel : MonoBehaviour
 {
-    public void SetChannel(Channel last, Channel next)
+    public void SetChannel(Channel last, Channel next, int index)
     {
         _lastChannel = last;
         _nextChannel = next;
+        InitPosition(index);
     }
 
     void Update()
     {
         this.GetComponent<RectTransform>().localPosition += new Vector3(1, 0, 0) * _speed;
-        if (_isActive && this.GetComponent<RectTransform>().localPosition.x < -1640f)
+        if (this.GetComponent<RectTransform>().localPosition.x < -1900f)
         {
-            _isActive = false;
             ResetPosition();
         }
+    }
+
+    private void InitPosition(int index)
+    {
+        if (index != 0)
+        {
+            this.GetComponent<RectTransform>().localPosition = new Vector3
+          (_lastChannel.gameObject.GetComponent<RectTransform>().localPosition.x + _distance,
+          this.GetComponent<RectTransform>().localPosition.y,
+          this.GetComponent<RectTransform>().localPosition.z);
+        }
+        SetPositionY();
     }
 
     private void ResetPosition()
@@ -27,7 +39,6 @@ public class Channel : MonoBehaviour
             this.GetComponent<RectTransform>().localPosition.y,
             this.GetComponent<RectTransform>().localPosition.z);
         SetPositionY();
-        _isActive = true;
     }
 
     private void SetPositionY()
@@ -45,6 +56,4 @@ public class Channel : MonoBehaviour
 
     private Channel _lastChannel;
     private Channel _nextChannel;
-
-    private bool _isActive = true;
 }
