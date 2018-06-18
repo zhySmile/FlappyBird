@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 222732908342510334}
   - component: {fileID: 114323109029679544}
   - component: {fileID: 95418246967326084}
+  - component: {fileID: 58198908934085548}
+  - component: {fileID: 114728276155428298}
   m_Layer: 5
   m_Name: YellowBird
   m_TagString: Untagged
@@ -233,6 +235,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!58 &58198908934085548
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1007461937546030}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!95 &95418246967326084
 Animator:
   serializedVersion: 3
@@ -558,6 +575,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114728276155428298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1007461937546030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32001d634c2ea684ebff2f2879952456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distance: 100
+  _time: 0.4
+  _dropSpeed: 30
+  _upSpeed: 10
 --- !u!114 &114782510424316044
 MonoBehaviour:
   m_ObjectHideFlags: 1

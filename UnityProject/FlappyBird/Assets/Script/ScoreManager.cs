@@ -2,15 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour {
+public class ScoreManager
+{
+    public static ScoreManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new ScoreManager();
+            }
+            return _instance;
+        }
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void Reset()
+    {
+        _score = 0;
+    }
+
+    public void AddScore()
+    {
+        _score++;
+    }
+
+    public int GetScore()
+    {
+        return _score;
+    }
+
+    private int _score;
+    private static ScoreManager _instance;
 }
