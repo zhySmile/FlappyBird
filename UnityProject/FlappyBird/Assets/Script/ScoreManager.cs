@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreManager
 {
+    public Action OnScoreChange = delegate { };
     public static ScoreManager Instance
     {
         get
@@ -24,6 +26,7 @@ public class ScoreManager
     public void AddScore()
     {
         _score++;
+        OnScoreChange();
     }
 
     public int GetScore()
