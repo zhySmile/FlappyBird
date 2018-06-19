@@ -23,6 +23,10 @@ public class Bird : MonoBehaviour
 
     void Update()
     {
+        if (BirdManager.Instance.IsBirdGround)
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             _isFlyUp = true;

@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 224745315696533968}
   - component: {fileID: 222203940334206294}
-  - component: {fileID: 114457225326992292}
   m_Layer: 5
   m_Name: GroundPanel
   m_TagString: Untagged
@@ -38,8 +37,8 @@ GameObject:
   - component: {fileID: 224832151074624232}
   - component: {fileID: 222557858790291380}
   - component: {fileID: 114448172326216636}
-  - component: {fileID: 61478000138692782}
   - component: {fileID: 114173109897223640}
+  - component: {fileID: 61346272817584120}
   m_Layer: 5
   m_Name: Ground1
   m_TagString: Untagged
@@ -66,7 +65,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &61478000138692782
+--- !u!61 &61346272817584120
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -78,7 +77,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.1113281, y: 114.41513}
+  m_Offset: {x: 1.1113281, y: 177}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -103,7 +102,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.1113281, y: 114.41513}
+  m_Offset: {x: 1.1113281, y: 177}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -196,17 +195,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: -3
   _ground: {fileID: 0}
---- !u!114 &114457225326992292
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1734824356937130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &222203940334206294
 CanvasRenderer:
   m_ObjectHideFlags: 1

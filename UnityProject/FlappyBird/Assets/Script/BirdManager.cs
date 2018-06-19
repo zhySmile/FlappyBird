@@ -7,6 +7,7 @@ public class BirdManager
 {
     public Action OnBirdDie = delegate { };
     public bool IsBirdDie = false;
+    public bool IsBirdGround = false;
 
     public static BirdManager Instance
     {
@@ -31,6 +32,15 @@ public class BirdManager
         AudioManager.Instance.PlayDie();
         OnBirdDie();
         IsBirdDie = true;
+    }
+
+    public void SetBirdGround()
+    {
+        if (!IsBirdDie)
+        {
+            BirdDie();
+        }
+        IsBirdGround = true;
     }
 
     private static BirdManager _instance;

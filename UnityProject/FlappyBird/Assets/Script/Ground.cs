@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        BirdManager.Instance.SetBirdGround();
+    }
+
     void Update()
     {
         if (BirdManager.Instance.IsBirdDie)
