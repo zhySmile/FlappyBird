@@ -17,6 +17,7 @@ public class Bird : MonoBehaviour
         {
             _isFlyUp = true;
             _speed = _upSpeed;
+            AudioManager.Instance.PlayWing();
         }
 
         if (!_isFlyUp)

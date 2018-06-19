@@ -27,6 +27,7 @@ public class ScoreManager
     {
         _score++;
         OnScoreChange();
+        AudioManager.Instance.PlayPoint();
     }
 
     public int GetScore()

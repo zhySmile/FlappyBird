@@ -19,12 +19,13 @@ public class Trigger : MonoBehaviour
     private void AddScore()
     {
         ScoreManager.Instance.AddScore();
-        Debug.Log("addscore");
     }
 
     private void Die()
     {
         Debug.Log("die");
+        AudioManager.Instance.PlayHit();
+        AudioManager.Instance.PlayDie();
     }
 
     [SerializeField]
