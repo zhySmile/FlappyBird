@@ -296,6 +296,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\AudioManager.cs" />
     <Compile Include="Assets\Script\Bird.cs" />
+    <Compile Include="Assets\Script\BirdManager.cs" />
     <Compile Include="Assets\Script\Channel.cs" />
     <Compile Include="Assets\Script\EndingPanel.cs" />
     <Compile Include="Assets\Script\Ground.cs" />

@@ -6,6 +6,10 @@ public class Ground : MonoBehaviour
 {
     void Update()
     {
+        if (_isBirdDie)
+        {
+            return;
+        }
         this.GetComponent<RectTransform>().localPosition += new Vector3(1, 0, 0) * _speed;
         if (this.GetComponent<RectTransform>().localPosition.x <
             -this.GetComponent<RectTransform>().sizeDelta.x)
@@ -23,6 +27,20 @@ public class Ground : MonoBehaviour
             this.GetComponent<RectTransform>().localPosition.z);
     }
 
+    private void OnBirdDie()
+    {
+        _isBirdDie = true;
+    }
+
+    private void OnEnable()
+    {
+        BirdManager.Instance.OnBirdDie += OnBirdDie;
+    }
+
+    private void OnDisable()
+    {
+        BirdManager.Instance.OnBirdDie -= OnBirdDie;
+    }
 
     [SerializeField]
     private float _speed;
@@ -31,4 +49,5 @@ public class Ground : MonoBehaviour
 
     private Channel _lastChannel;
     private Channel _nextChannel;
+    private bool _isBirdDie = false;
 }

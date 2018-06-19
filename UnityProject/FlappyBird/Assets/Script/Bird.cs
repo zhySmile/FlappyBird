@@ -1,16 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-
-    // Use this for initialization
-    void Start()
+    private void OnEnable()
     {
+        BirdManager.Instance.OnBirdDie += OnBirdDie;
     }
 
-    // Update is called once per frame
+    private void OnDisable()
+    {
+        BirdManager.Instance.OnBirdDie -= OnBirdDie;
+    }
+
+    private void OnBirdDie()
+    {
+        Debug.Log("onbirddie");
+        _isFlyUp = false;
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
