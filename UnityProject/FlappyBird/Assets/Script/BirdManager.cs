@@ -6,6 +6,7 @@ using System;
 public class BirdManager
 {
     public Action OnBirdDie = delegate { };
+    public bool IsBirdDie = false;
 
     public static BirdManager Instance
     {
@@ -19,7 +20,18 @@ public class BirdManager
         }
     }
 
+    public void Reset()
+    {
+        _instance = null;
+    }
 
+    public void BirdDie()
+    {
+        AudioManager.Instance.PlayHit();
+        AudioManager.Instance.PlayDie();
+        OnBirdDie();
+        IsBirdDie = true;
+    }
 
     private static BirdManager _instance;
 }

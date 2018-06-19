@@ -13,7 +13,7 @@ public class Channel : MonoBehaviour
 
     void Update()
     {
-        if (_isBirdDie)
+        if (BirdManager.Instance.IsBirdDie)
         {
             return;
         }
@@ -53,21 +53,6 @@ public class Channel : MonoBehaviour
            this.GetComponent<RectTransform>().localPosition.z);
     }
 
-    private void OnBirdDie()
-    {
-        _isBirdDie = true;
-    }
-
-    private void OnEnable()
-    {
-        BirdManager.Instance.OnBirdDie += OnBirdDie;
-    }
-
-    private void OnDisable()
-    {
-        BirdManager.Instance.OnBirdDie -= OnBirdDie;
-    }
-
     [SerializeField]
     private float _speed;
     [SerializeField]
@@ -75,5 +60,4 @@ public class Channel : MonoBehaviour
 
     private Channel _lastChannel;
     private Channel _nextChannel;
-    private bool _isBirdDie = false;
 }

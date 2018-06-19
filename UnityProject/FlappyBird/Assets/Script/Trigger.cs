@@ -6,7 +6,7 @@ public class Trigger : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_isBirdDie)
+        if (BirdManager.Instance.IsBirdDie)
         {
             return;
         }
@@ -27,16 +27,10 @@ public class Trigger : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("die");
-        _isBirdDie = true;
-        BirdManager.Instance.OnBirdDie();
-        AudioManager.Instance.PlayHit();
-        AudioManager.Instance.PlayDie();
+        BirdManager.Instance.BirdDie();
     }
 
     [SerializeField]
     public TriggerType _triggerType;
-
-    private bool _isBirdDie = false;
 }
 
