@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndingPanel : MonoBehaviour {
+public class EndingPanel : BaseUI
+{
+    public override void SetType(UIType type)
+    {
+        base.SetType(type);
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Awake()
+    {
+        SetType(UIType.EndingPanel);
+    }
 }

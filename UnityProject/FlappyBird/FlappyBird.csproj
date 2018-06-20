@@ -295,6 +295,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\AudioManager.cs" />
+    <Compile Include="Assets\Script\BaseUI.cs" />
     <Compile Include="Assets\Script\Bird.cs" />
     <Compile Include="Assets\Script\BirdManager.cs" />
     <Compile Include="Assets\Script\Channel.cs" />
@@ -308,6 +309,8 @@
     <Compile Include="Assets\Script\Trigger.cs" />
     <Compile Include="Assets\Script\TriggerPanel.cs" />
     <Compile Include="Assets\Script\TriggerType.cs" />
+    <Compile Include="Assets\Script\UIManager.cs" />
+    <Compile Include="Assets\Script\UIType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\Users\65258\AppData\Local\Unity\cache\packages\packages.unity.com\com.unity.package-manager-ui@1.8.8\Editor\Resources\Styles\Main_Dark.uss" />

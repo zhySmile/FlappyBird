@@ -1,16 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class StartPanel : MonoBehaviour {
+public class StartPanel : BaseUI
+{
+    public override void SetType(UIType type)
+    {
+        base.SetType(type);
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Awake()
+    {
+        SetType(UIType.StartPanel);
+    }
+
+    private void StartGame()
+    {
+        UIManager.Instance.Show(UIType.PlayingPanel);
+    }
+
+    private void OnEnable()
+    {
+        _startButton.onClick.AddListener(StartGame);
+    }
+
+    private void OnDisable()
+    {
+        _startButton.onClick.RemoveListener(StartGame);
+    }
+
+    [SerializeField]
+    private Button _startButton;
 }

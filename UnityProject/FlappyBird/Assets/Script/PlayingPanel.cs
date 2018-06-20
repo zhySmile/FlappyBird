@@ -2,19 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayingPanel : MonoBehaviour
+public class PlayingPanel : BaseUI
 {
-
-    // Use this for initialization
-    void Start()
+    public override void SetType(UIType type)
     {
-
+        base.SetType(type);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-
+        SetType(UIType.PlayingPanel);
     }
 
     private void OnEnable()

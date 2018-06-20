@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerPanel : MonoBehaviour
+public class TriggerPanel
 {
-
-    // Use this for initialization
     void Start()
     {
         for (int i = 0; i < _channels.Count; i++)
