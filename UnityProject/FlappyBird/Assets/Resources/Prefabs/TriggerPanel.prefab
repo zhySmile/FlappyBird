@@ -112,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224700875496726294}
   - component: {fileID: 222710578490773484}
-  - component: {fileID: 114305252921321302}
+  - component: {fileID: 114095257621794912}
   m_Layer: 5
   m_Name: TriggerPanel
   m_TagString: Untagged
@@ -553,6 +553,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114095257621794912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1508359367793210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc1d6282d76e20d4e9ad5e82107b8edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _channels:
+  - {fileID: 114273583391918210}
+  - {fileID: 114279729127242776}
+  - {fileID: 114212423267778810}
 --- !u!114 &114097384585528194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -631,21 +646,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerType: 1
---- !u!114 &114305252921321302
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1508359367793210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc1d6282d76e20d4e9ad5e82107b8edd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _channels:
-  - {fileID: 114273583391918210}
-  - {fileID: 114279729127242776}
-  - {fileID: 114212423267778810}
 --- !u!114 &114340184569624514
 MonoBehaviour:
   m_ObjectHideFlags: 1

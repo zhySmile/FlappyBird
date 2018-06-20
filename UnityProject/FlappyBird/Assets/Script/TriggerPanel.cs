@@ -2,10 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerPanel
+public class TriggerPanel : MonoBehaviour
 {
     void Start()
     {
+        ResetTrigger();
+    }
+
+    private void OnEnable()
+    {
+        StateControl.OnStateChange += OnStateChange;
+    }
+
+    private void OnDisable()
+    {
+        StateControl.OnStateChange -= OnStateChange;
+    }
+
+    private void OnStateChange(StateType state)
+    {
+        if (state == StateType.Ready)
+        {
+            ResetTrigger();
+        }
+    }
+
+    private void ResetTrigger()
+    {
+        Debug.Log("reset");
         for (int i = 0; i < _channels.Count; i++)
         {
             if (i == 0)
@@ -23,11 +47,6 @@ public class TriggerPanel
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     [SerializeField]
     private List<Channel> _channels;
 }

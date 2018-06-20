@@ -5,19 +5,11 @@ using UnityEngine.UI;
 
 public class StartPanel : BaseUI
 {
-    public override void SetType(UIType type)
-    {
-        base.SetType(type);
-    }
-
-    private void Awake()
-    {
-        SetType(UIType.StartPanel);
-    }
-
     private void StartGame()
     {
         UIManager.Instance.Show(UIType.PlayingPanel);
+        UIManager.Instance.Hide(UIType.StartPanel);
+        StateControl.SetState(StateType.Ready);
     }
 
     private void OnEnable()

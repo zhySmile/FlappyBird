@@ -1,16 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndingPanel : BaseUI
 {
-    public override void SetType(UIType type)
+    private void OnEnable()
     {
-        base.SetType(type);
+        _replayButton.onClick.AddListener(OnReplayButtonClick);
     }
 
-    private void Awake()
+    private void OnDisable()
     {
-        SetType(UIType.EndingPanel);
+        _replayButton.onClick.RemoveListener(OnReplayButtonClick);
     }
+
+    private void OnReplayButtonClick()
+    {
+        UIManager.Instance.Show(UIType.PlayingPanel);
+        UIManager.Instance.Hide(UIType.EndingPanel);
+        StateControl.SetState(StateType.Ready);
+    }
+
+    [SerializeField]
+    private Button _replayButton;
 }

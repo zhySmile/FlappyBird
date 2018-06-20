@@ -5,25 +5,58 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
+    private void Awake()
+    {
+        Vector3 position = this.GetComponent<RectTransform>().localPosition;
+        _birdInitPosition = position;
+    }
+
     private void OnEnable()
     {
         BirdManager.Instance.OnBirdDie += OnBirdDie;
+        StateControl.OnStateChange += OnStateChange;
     }
 
     private void OnDisable()
     {
         BirdManager.Instance.OnBirdDie -= OnBirdDie;
+        StateControl.OnStateChange -= OnStateChange;
     }
 
     private void OnBirdDie()
     {
-        Debug.Log("onbirddie");
         _isFlyUp = false;
+    }
+
+    private void OnStateChange(StateType state)
+    {
+        if (state == StateType.Playing)
+        {
+            StartFlyUp();
+        }
+        else if (state == StateType.Ready)
+        {
+            ResetBird();
+        }
+    }
+
+    private void ResetBird()
+    {
+        _isFlyUp = false;
+        this.GetComponent<RectTransform>().localPosition = _birdInitPosition;
+    }
+
+    private void StartFlyUp()
+    {
+        _isFlyUp = true;
+        _speed = _upSpeed;
+        AudioManager.Instance.PlayWing();
     }
 
     void Update()
     {
-        if (BirdManager.Instance.IsBirdGround)
+        if ((StateControl.GetState() != StateType.Playing &&
+            StateControl.GetState() != StateType.BirdDie) || BirdManager.Instance.IsBirdGround)
         {
             return;
         }
@@ -49,6 +82,8 @@ public class Bird : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private Vector3 _birdInitPosition;
     [SerializeField]
     private float _distance;
     [SerializeField]

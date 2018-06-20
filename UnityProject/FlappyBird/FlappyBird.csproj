@@ -301,11 +301,14 @@
     <Compile Include="Assets\Script\Channel.cs" />
     <Compile Include="Assets\Script\EndingPanel.cs" />
     <Compile Include="Assets\Script\Ground.cs" />
+    <Compile Include="Assets\Script\Initial.cs" />
     <Compile Include="Assets\Script\PlayingPanel.cs" />
     <Compile Include="Assets\Script\Score.cs" />
     <Compile Include="Assets\Script\ScoreManager.cs" />
     <Compile Include="Assets\Script\ScoreTrigger.cs" />
     <Compile Include="Assets\Script\StartPanel.cs" />
+    <Compile Include="Assets\Script\StateControl.cs" />
+    <Compile Include="Assets\Script\StateType.cs" />
     <Compile Include="Assets\Script\Trigger.cs" />
     <Compile Include="Assets\Script\TriggerPanel.cs" />
     <Compile Include="Assets\Script\TriggerType.cs" />

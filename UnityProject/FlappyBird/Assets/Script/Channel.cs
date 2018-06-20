@@ -13,7 +13,7 @@ public class Channel : MonoBehaviour
 
     void Update()
     {
-        if (BirdManager.Instance.IsBirdDie)
+        if (StateControl.GetState() != StateType.Playing || BirdManager.Instance.IsBirdDie)
         {
             return;
         }

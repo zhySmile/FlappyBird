@@ -41,6 +41,7 @@ public class BirdManager
             BirdDie();
         }
         IsBirdGround = true;
+        StateControl.SetState(StateType.GameOver);
     }
 
     private static BirdManager _instance;

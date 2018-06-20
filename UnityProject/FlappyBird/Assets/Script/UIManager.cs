@@ -24,15 +24,24 @@ public class UIManager
         }
         else
         {
-            Load(GetPath(type.ToString()));
+            Load(type, GetPath(type.ToString()));
         }
     }
 
-    public void Load(string path)
+    public void Hide(UIType type)
+    {
+        if (_typeToUIPanel.ContainsKey(type))
+        {
+            _typeToUIPanel[type].gameObject.SetActive(false);
+        }
+    }
+
+    public void Load(UIType type, string path)
     {
         Debug.Log(path);
         Object obj = Resources.Load(path, typeof(GameObject));
         GameObject panel = GameObject.Instantiate(obj) as GameObject;
+        _typeToUIPanel.Add(type, panel);
     }
 
     public void Show<T>(T item) where T : BaseUI
@@ -66,6 +75,6 @@ public class UIManager
         return string.Format("{0}{1}", "Prefabs/", name);
     }
 
-    private Dictionary<UIType, BaseUI> _typeToUIPanel = new Dictionary<UIType, BaseUI>();
+    private Dictionary<UIType, GameObject> _typeToUIPanel = new Dictionary<UIType, GameObject>();
     private static UIManager _instance;
 }

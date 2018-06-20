@@ -1,28 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayingPanel : BaseUI
 {
-    public override void SetType(UIType type)
-    {
-        base.SetType(type);
-    }
-
-    private void Awake()
-    {
-        SetType(UIType.PlayingPanel);
-    }
-
     private void OnEnable()
     {
         _scoreobjs = new List<Score>();
         ScoreManager.Instance.OnScoreChange += OnScoreChange;
+        _readyButton.onClick.AddListener(OnReadyClick);
+        StateControl.OnStateChange += OnStateChange;
     }
 
     private void OnDisable()
     {
         ScoreManager.Instance.OnScoreChange -= OnScoreChange;
+        _readyButton.onClick.RemoveListener(OnReadyClick);
+        StateControl.OnStateChange -= OnStateChange;
+    }
+
+    private void OnStateChange(StateType state)
+    {
+        if (state == StateType.GameOver)
+        {
+            UIManager.Instance.Show(UIType.EndingPanel);
+            UIManager.Instance.Hide(UIType.PlayingPanel);
+        }
+        else if (state == StateType.Ready)
+        {
+            ResetPanel();
+        }
+    }
+
+    private void ResetPanel()
+    {
+        _tutorialPanel.SetActive(true);
+    }
+
+    private void OnReadyClick()
+    {
+        StateControl.SetState(StateType.Playing);
+        _tutorialPanel.SetActive(false);
     }
 
     private void OnScoreChange()
@@ -45,6 +64,10 @@ public class PlayingPanel : BaseUI
         }
     }
 
+    [SerializeField]
+    private Button _readyButton;
+    [SerializeField]
+    private GameObject _tutorialPanel;
     [SerializeField]
     private Score _scoreObj;
     [SerializeField]
