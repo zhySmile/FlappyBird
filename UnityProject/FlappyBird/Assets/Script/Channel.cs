@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Channel : MonoBehaviour
 {
+    private void Awake()
+    {
+        _initPosition = this.GetComponent<RectTransform>().localPosition;
+    }
+
     public void SetChannel(Channel last, Channel next, int index)
     {
         _lastChannel = last;
@@ -53,6 +58,8 @@ public class Channel : MonoBehaviour
            this.GetComponent<RectTransform>().localPosition.z);
     }
 
+    [SerializeField]
+    private Vector3 _initPosition;
     [SerializeField]
     private float _speed;
     [SerializeField]

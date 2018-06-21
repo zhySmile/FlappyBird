@@ -24,6 +24,8 @@ public class BirdManager
     public void Reset()
     {
         _instance = null;
+        IsBirdDie = false;
+        IsBirdGround = false;
     }
 
     public void BirdDie()

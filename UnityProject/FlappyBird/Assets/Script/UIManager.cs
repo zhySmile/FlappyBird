@@ -38,7 +38,6 @@ public class UIManager
 
     public void Load(UIType type, string path)
     {
-        Debug.Log(path);
         Object obj = Resources.Load(path, typeof(GameObject));
         GameObject panel = GameObject.Instantiate(obj) as GameObject;
         _typeToUIPanel.Add(type, panel);

@@ -15,6 +15,7 @@ public class PlayingPanel : BaseUI
 
     private void OnDisable()
     {
+        DestroyScore();
         ScoreManager.Instance.OnScoreChange -= OnScoreChange;
         _readyButton.onClick.RemoveListener(OnReadyClick);
         StateControl.OnStateChange -= OnStateChange;
@@ -36,6 +37,7 @@ public class PlayingPanel : BaseUI
     private void ResetPanel()
     {
         _tutorialPanel.SetActive(true);
+        CreateScore(0);
     }
 
     private void OnReadyClick()
@@ -52,15 +54,28 @@ public class PlayingPanel : BaseUI
             int num = int.Parse(score.ToString().Substring(i, 1));
             if (_scoreobjs.Count <= i)
             {
-                Score scoreObj = GameObject.Instantiate(_scoreObj.gameObject).GetComponent<Score>();
-                scoreObj.gameObject.transform.SetParent(_scoreParent);
-                scoreObj.SetScore(num);
-                _scoreobjs.Add(scoreObj);
+                CreateScore(num);
             }
             else
             {
                 _scoreobjs[i].SetScore(num);
             }
+        }
+    }
+
+    private void CreateScore(int num)
+    {
+        Score scoreObj = GameObject.Instantiate(_scoreObj.gameObject).GetComponent<Score>();
+        scoreObj.gameObject.transform.SetParent(_scoreParent);
+        _scoreobjs.Add(scoreObj);
+        scoreObj.SetScore(num);
+    }
+
+    private void DestroyScore()
+    {
+        for (int i = 0; i < _scoreobjs.Count; i++)
+        {
+            Destroy(_scoreobjs[i].gameObject);
         }
     }
 
