@@ -27,6 +27,30 @@ public class EndingPanel : BaseUI
         }
     }
 
+    private void RefreshModel()
+    {
+        if (ScoreManager.Instance.GetScore() < 10)
+        {
+            _model.gameObject.SetActive(false);
+        }
+        else if (ScoreManager.Instance.GetScore() < 20)
+        {
+            _model.sprite = _modelObjs[0];
+        }
+        else if (ScoreManager.Instance.GetScore() < 30)
+        {
+            _model.sprite = _modelObjs[1];
+        }
+        else if (ScoreManager.Instance.GetScore() < 40)
+        {
+            _model.sprite = _modelObjs[2];
+        }
+        else
+        {
+            _model.sprite = _modelObjs[3];
+        }
+    }
+
     private void OnEnable()
     {
         _replayButton.onClick.AddListener(OnReplayButtonClick);
@@ -35,6 +59,7 @@ public class EndingPanel : BaseUI
         RefreshScore(ScoreManager.Instance.GetScore(), false);
         RefreshScore(ScoreManager.Instance.GetBestScore(), true);
         _newScoreObj.SetActive(ScoreManager.Instance.IsNewBestScore);
+        RefreshModel();
     }
 
     private void OnDisable()
@@ -72,6 +97,10 @@ public class EndingPanel : BaseUI
     private Transform _bestScoreParent;
     [SerializeField]
     private GameObject _newScoreObj;
+    [SerializeField]
+    private List<Sprite> _modelObjs;
+    [SerializeField]
+    private Image _model;
 
     private List<Score> _scoreObjs;
     private List<Score> _bestScoreObjs;

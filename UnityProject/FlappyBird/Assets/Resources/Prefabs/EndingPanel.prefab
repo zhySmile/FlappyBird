@@ -369,6 +369,12 @@ MonoBehaviour:
   _scoreParent: {fileID: 224146378114749584}
   _bestScoreParent: {fileID: 224129576198812862}
   _newScoreObj: {fileID: 1331311759508154}
+  _modelObjs:
+  - {fileID: 21300142, guid: ea87c43aa2d0d1249baccf1f9f37b801, type: 3}
+  - {fileID: 21300138, guid: ea87c43aa2d0d1249baccf1f9f37b801, type: 3}
+  - {fileID: 21300090, guid: ea87c43aa2d0d1249baccf1f9f37b801, type: 3}
+  - {fileID: 21300088, guid: ea87c43aa2d0d1249baccf1f9f37b801, type: 3}
+  _model: {fileID: 114899540264529514}
 --- !u!114 &114403194122567446
 MonoBehaviour:
   m_ObjectHideFlags: 1

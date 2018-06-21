@@ -47,7 +47,6 @@ public class ScoreManager
 
     public int GetBestScore()
     {
-        Debug.Log(PlayerPrefs.GetInt(_bestScore, 0));
         return PlayerPrefs.GetInt(_bestScore, 0);
     }
 
