@@ -14,6 +14,7 @@ public class Bird : MonoBehaviour
 
     private void OnEnable()
     {
+
         BirdManager.Instance.OnBirdDie += OnBirdDie;
         StateControl.OnStateChange += OnStateChange;
         OnStateChange(StateControl.GetState());
@@ -101,7 +102,8 @@ public class Bird : MonoBehaviour
         {
             target = Quaternion.Euler(_downRotation);
         }
-        this.GetComponent<RectTransform>().localRotation = Quaternion.Lerp(initial, target, _rotateSpeed * Time.deltaTime);
+        float rotateSpeed = _stepY >= 0 ? _rotateSpeed : _rotateSpeed * 0.5f;
+        this.GetComponent<RectTransform>().localRotation = Quaternion.Lerp(initial, target, rotateSpeed * Time.deltaTime);
     }
 
     [SerializeField]
