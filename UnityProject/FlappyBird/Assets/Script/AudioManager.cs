@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayWing()
     {
+        Debug.Log("playwing");
         _audio.PlayOneShot(_wing);
     }
 

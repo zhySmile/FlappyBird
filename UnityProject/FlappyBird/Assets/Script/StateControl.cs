@@ -9,6 +9,7 @@ public static class StateControl
 
     public static void SetState(StateType state)
     {
+        Debug.Log("state   " + state);
         _state = state;
         OnStateChange(state);
     }

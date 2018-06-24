@@ -36,6 +36,7 @@ public class PlayingPanel : BaseUI
 
     private void ResetPanel()
     {
+        _readyButton.enabled = true;
         _tutorialPanel.SetActive(true);
         CreateScore(0);
         DoFade(true, 0);
@@ -43,6 +44,7 @@ public class PlayingPanel : BaseUI
 
     private void OnReadyClick()
     {
+        _readyButton.enabled = false;
         StateControl.SetState(StateType.Playing);
         DoFade(false, _uiAnimationFadeTime);
     }

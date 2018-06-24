@@ -48,7 +48,6 @@ public class Bird : MonoBehaviour
 
     private void ResetBird()
     {
-        Debug.Log("reset");
         _isFlyUp = false;
         this.GetComponent<RectTransform>().localPosition = _birdInitPosition;
         this.GetComponent<RectTransform>().localEulerAngles = Vector3.zero;
@@ -63,46 +62,66 @@ public class Bird : MonoBehaviour
 
     private void StartFlyUp()
     {
-        _isFlyUp = true;
-        _speed = vecY;
+        _stepY = _distance + Time.deltaTime * _fixedSpeed;
         AudioManager.Instance.PlayWing();
     }
 
     void Update()
     {
-        if ((StateControl.GetState() != StateType.Playing &&
-            StateControl.GetState() != StateType.BirdDie) || BirdManager.Instance.IsBirdGround)
+        if (StateControl.GetState() != StateType.Playing)
         {
+            if (BirdManager.Instance.IsBirdGround)
+            {
+                if (transform.localPosition.y + _stepY < -502f)
+                {
+                    transform.localPosition = new Vector3(transform.localPosition.x, -502f, transform.localPosition.z);
+                }
+            }
             return;
         }
+
         if (Input.GetMouseButtonDown(0))
         {
-            _isFlyUp = true;
-            vecY = _fixedSpeed;
-            AudioManager.Instance.PlayWing();
-            //_targerPositionY = this.GetComponent<RectTransform>().localPosition.y + _distance;
+            if (!BirdManager.Instance.IsBirdDie)
+            {
+                AudioManager.Instance.PlayWing();
+                _stepY = _distance + Time.deltaTime * _fixedSpeed;
+            }
         }
+        _stepY -= Time.deltaTime * _fixedSpeed;
+        transform.localPosition += new Vector3(0, _stepY, 0);
 
-        if (!_isFlyUp)
+        Quaternion initial = this.GetComponent<RectTransform>().localRotation;
+        Quaternion target;
+        if (_stepY >= 0)
         {
-            vecY -= _speed * Time.deltaTime;
-            transform.position += new Vector3(0, vecY, 0);
-            Quaternion initial = this.GetComponent<RectTransform>().localRotation;
-            Quaternion target = Quaternion.Euler(_downRotation);
-            this.GetComponent<RectTransform>().localRotation = Quaternion.Lerp(initial, target, _rotateSpeed * Time.deltaTime);
+            target = Quaternion.Euler(_upRotation);
         }
-
-
-        if (_isFlyUp)
+        else
         {
-            FlyUp();
+            target = Quaternion.Euler(_downRotation);
         }
+        this.GetComponent<RectTransform>().localRotation = Quaternion.Lerp(initial, target, _rotateSpeed * Time.deltaTime);
+        //if (!_isFlyUp)
+        //{
+        //    _speed -= _speed * Time.deltaTime;
+        //    transform.position += new Vector3(0, _speed, 0);
+        //    Quaternion initial = this.GetComponent<RectTransform>().localRotation;
+        //    Quaternion target = Quaternion.Euler(_downRotation);
+        //    this.GetComponent<RectTransform>().localRotation = Quaternion.Lerp(initial, target, _rotateSpeed * Time.deltaTime);
+        //}
+
+
+        //if (_isFlyUp)
+        //{
+        //    FlyUp();
+        //}
     }
 
     private void FlyUp()
     {
-        vecY -= _speed * Time.deltaTime;
-        transform.position += new Vector3(0, vecY, 0);
+        _speed -= _speed * Time.deltaTime;
+        transform.position += new Vector3(0, _speed, 0);
         _isFlyUp = _speed <= 0 ? false : true;
 
         //Quaternion initial = Quaternion.Euler(Vector3.zero);
@@ -150,6 +169,8 @@ public class Bird : MonoBehaviour
     [SerializeField]
     private float _speed;
     private float _rotation;
+
+    private float _stepY;
 
     private float _targerPositionY;
     private Tween _idelTween;
