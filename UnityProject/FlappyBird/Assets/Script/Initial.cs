@@ -6,6 +6,7 @@ public class Initial : MonoBehaviour
 {
     private void Awake()
     {
+        StateControl.SetState(StateType.Start);
         UIManager.Instance.Show(UIType.StartPanel);
     }
 

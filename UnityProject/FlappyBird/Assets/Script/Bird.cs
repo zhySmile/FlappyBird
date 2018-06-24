@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Bird : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Bird : MonoBehaviour
     {
         BirdManager.Instance.OnBirdDie += OnBirdDie;
         StateControl.OnStateChange += OnStateChange;
+        OnStateChange(StateControl.GetState());
     }
 
     private void OnDisable()
@@ -32,9 +34,13 @@ public class Bird : MonoBehaviour
     {
         if (state == StateType.Playing)
         {
+            if (_idelTween != null)
+            {
+                _idelTween.Kill();
+            }
             StartFlyUp();
         }
-        else if (state == StateType.Ready)
+        else if (state == StateType.Start || state == StateType.Ready)
         {
             ResetBird();
         }
@@ -42,6 +48,7 @@ public class Bird : MonoBehaviour
 
     private void ResetBird()
     {
+        Debug.Log("reset");
         _isFlyUp = false;
         this.GetComponent<RectTransform>().localPosition = _birdInitPosition;
         this.GetComponent<RectTransform>().localEulerAngles = Vector3.zero;
@@ -50,6 +57,8 @@ public class Bird : MonoBehaviour
         string strPath = "animation/Bird" + randomBird;
         RuntimeAnimatorController runAnim = Resources.Load<RuntimeAnimatorController>(strPath);
         this.GetComponent<Animator>().runtimeAnimatorController = runAnim;
+        _idelTween = this.transform.DOLocalMoveY(_idelUpPositionY, _idelUpDuration);
+        _idelTween.SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
     }
 
     private void StartFlyUp()
@@ -92,7 +101,7 @@ public class Bird : MonoBehaviour
 
     private void FlyUp()
     {
-        vecY -=  _speed * Time.deltaTime;
+        vecY -= _speed * Time.deltaTime;
         transform.position += new Vector3(0, vecY, 0);
         _isFlyUp = _speed <= 0 ? false : true;
 
@@ -114,6 +123,10 @@ public class Bird : MonoBehaviour
     //    this.GetComponent<RectTransform>().localRotation = Quaternion.Lerp(initial, target, _rotateSpeed * Time.deltaTime);
     //}
 
+    [SerializeField]
+    private float _idelUpPositionY;
+    [SerializeField]
+    private float _idelUpDuration;
     [SerializeField]
     private List<Sprite> _birdImage;
     [SerializeField]
@@ -139,6 +152,7 @@ public class Bird : MonoBehaviour
     private float _rotation;
 
     private float _targerPositionY;
+    private Tween _idelTween;
 
 
     [SerializeField]

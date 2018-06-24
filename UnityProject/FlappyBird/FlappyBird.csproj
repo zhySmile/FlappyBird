@@ -319,6 +319,7 @@
     <Compile Include="Assets\Script\Bird.cs" />
     <Compile Include="Assets\Script\BirdManager.cs" />
     <Compile Include="Assets\Script\Channel.cs" />
+    <Compile Include="Assets\Script\DontDestroyPanel.cs" />
     <Compile Include="Assets\Script\EndingPanel.cs" />
     <Compile Include="Assets\Script\Ground.cs" />
     <Compile Include="Assets\Script\Initial.cs" />
