@@ -8,6 +8,7 @@ public class StartPanel : BaseUI
 {
     private void StartGame()
     {
+        AudioManager.Instance.PlaySwooshing();
         UIManager.Instance.Show(UIType.PlayingPanel);
         UIManager.Instance.Hide(UIType.StartPanel);
         StateControl.SetState(StateType.Ready);

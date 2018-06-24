@@ -32,6 +32,11 @@ public class AudioManager : MonoBehaviour
         _audio.PlayOneShot(_point);
     }
 
+    public void PlaySwooshing()
+    {
+        _audio.PlayOneShot(_swooshing);
+    }
+
     private void Awake()
     {
         _instance = this;

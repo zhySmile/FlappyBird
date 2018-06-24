@@ -94,6 +94,7 @@ public class EndingPanel : BaseUI
 
     private void OnReplayButtonClick()
     {
+        AudioManager.Instance.PlaySwooshing();
         UIManager.Instance.Show(UIType.PlayingPanel);
         UIManager.Instance.Hide(UIType.EndingPanel);
         StateControl.SetState(StateType.Ready);
@@ -102,15 +103,19 @@ public class EndingPanel : BaseUI
     private void SetGameOverPanelState()
     {
         _gameOverPanelObj.gameObject.SetActive(true);
+        AudioManager.Instance.PlaySwooshing();
         _gameOverPanelObj.gameObject.transform.DOLocalMoveY(380f, 0.2f).OnComplete(() =>
         {
             _gameOverPanelObj.gameObject.transform.DOLocalMoveY(350f, 0.2f).OnComplete(() =>
-            { SetScorePanelState(); });
+            {
+                SetScorePanelState();
+            });
         });
     }
 
     private void SetScorePanelState()
     {
+        AudioManager.Instance.PlaySwooshing();
         _scorePanelObj.gameObject.SetActive(true);
         _scorePanelObj.transform.DOLocalMoveY(-33f, 0.5f).OnComplete(() =>
         {
