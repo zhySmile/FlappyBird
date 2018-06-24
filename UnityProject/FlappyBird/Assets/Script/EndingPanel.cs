@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class EndingPanel : BaseUI
 {
@@ -60,12 +61,23 @@ public class EndingPanel : BaseUI
         RefreshScore(ScoreManager.Instance.GetBestScore(), true);
         _newScoreObj.SetActive(ScoreManager.Instance.IsNewBestScore);
         RefreshModel();
+        ResetPanel();
+        SetGameOverPanelState();
     }
 
     private void OnDisable()
     {
         _replayButton.onClick.RemoveListener(OnReplayButtonClick);
         DestroyScore();
+    }
+
+    private void ResetPanel()
+    {
+        _scorePanelObj.transform.localPosition = _scorePanelObjPosition;
+        _gameOverPanelObj.gameObject.SetActive(false);
+        _scorePanelObj.gameObject.SetActive(false);
+        _replayButton.gameObject.SetActive(false);
+        _rankButton.gameObject.SetActive(false);
     }
 
     private void DestroyScore()
@@ -87,8 +99,41 @@ public class EndingPanel : BaseUI
         StateControl.SetState(StateType.Ready);
     }
 
+    private void SetGameOverPanelState()
+    {
+        _gameOverPanelObj.gameObject.SetActive(true);
+        _gameOverPanelObj.gameObject.transform.DOLocalMoveY(380f, 0.2f).OnComplete(() =>
+        {
+            _gameOverPanelObj.gameObject.transform.DOLocalMoveY(350f, 0.2f).OnComplete(() =>
+            { SetScorePanelState(); });
+        });
+    }
+
+    private void SetScorePanelState()
+    {
+        _scorePanelObj.gameObject.SetActive(true);
+        _scorePanelObj.transform.DOLocalMoveY(-33f, 0.5f).OnComplete(() =>
+        {
+            SetButtonState();
+        });
+    }
+
+    private void SetButtonState()
+    {
+        _replayButton.gameObject.SetActive(true);
+        _rankButton.gameObject.SetActive(true);
+    }
+
+    [SerializeField]
+    private Vector3 _scorePanelObjPosition;
+    [SerializeField]
+    private GameObject _gameOverPanelObj;
+    [SerializeField]
+    private GameObject _scorePanelObj;
     [SerializeField]
     private Button _replayButton;
+    [SerializeField]
+    private Button _rankButton;
     [SerializeField]
     private Score _scoreObj;
     [SerializeField]

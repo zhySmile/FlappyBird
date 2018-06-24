@@ -38,12 +38,13 @@ public class PlayingPanel : BaseUI
     {
         _tutorialPanel.SetActive(true);
         CreateScore(0);
+        DoFade(true, 0);
     }
 
     private void OnReadyClick()
     {
         StateControl.SetState(StateType.Playing);
-        _tutorialPanel.SetActive(false);
+        DoFade(false, _uiAnimationFadeTime);
     }
 
     private void OnScoreChange()
@@ -78,7 +79,36 @@ public class PlayingPanel : BaseUI
             Destroy(_scoreobjs[i].gameObject);
         }
     }
+    public void DoFade(bool isShow, float time = 1)
+    {
+        StartCoroutine(DoFadeAnimation(isShow, time));
+    }
 
+    IEnumerator DoFadeAnimation(bool isShow, float time)
+    {
+        float _time = time;
+        float offsetTime = 0.02f;
+        float offset = _time == 0 ? 1 : offsetTime / _time;
+        if (isShow)
+        {
+            while (_canvasGroup.alpha < 1)
+            {
+                yield return new WaitForSeconds(offsetTime);
+                _canvasGroup.alpha += offset;
+            }
+        }
+        else
+        {
+            while (_canvasGroup.alpha > 0)
+            {
+                yield return new WaitForSeconds(offsetTime);
+                _canvasGroup.alpha -= offset;
+            }
+        }
+    }
+
+    [SerializeField]
+    private float _uiAnimationFadeTime;
     [SerializeField]
     private Button _readyButton;
     [SerializeField]
@@ -87,6 +117,8 @@ public class PlayingPanel : BaseUI
     private Score _scoreObj;
     [SerializeField]
     private Transform _scoreParent;
+    [SerializeField]
+    private CanvasGroup _canvasGroup;
 
     private List<Score> _scoreobjs;
 }
