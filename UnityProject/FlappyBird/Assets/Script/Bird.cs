@@ -102,45 +102,7 @@ public class Bird : MonoBehaviour
             target = Quaternion.Euler(_downRotation);
         }
         this.GetComponent<RectTransform>().localRotation = Quaternion.Lerp(initial, target, _rotateSpeed * Time.deltaTime);
-        //if (!_isFlyUp)
-        //{
-        //    _speed -= _speed * Time.deltaTime;
-        //    transform.position += new Vector3(0, _speed, 0);
-        //    Quaternion initial = this.GetComponent<RectTransform>().localRotation;
-        //    Quaternion target = Quaternion.Euler(_downRotation);
-        //    this.GetComponent<RectTransform>().localRotation = Quaternion.Lerp(initial, target, _rotateSpeed * Time.deltaTime);
-        //}
-
-
-        //if (_isFlyUp)
-        //{
-        //    FlyUp();
-        //}
     }
-
-    private void FlyUp()
-    {
-        _speed -= _speed * Time.deltaTime;
-        transform.position += new Vector3(0, _speed, 0);
-        _isFlyUp = _speed <= 0 ? false : true;
-
-        //Quaternion initial = Quaternion.Euler(Vector3.zero);
-        Quaternion initial = this.GetComponent<RectTransform>().localRotation;
-        Quaternion target = Quaternion.Euler(_upRotation);
-        this.GetComponent<RectTransform>().localRotation = Quaternion.Lerp(initial, target, _rotateSpeed * Time.deltaTime);
-    }
-    //private void TestFlyUp()
-    //{
-    //    _speed -= vecY * Time.deltaTime;
-
-    //    this.GetComponent<RectTransform>().localPosition += new Vector3(0, _speed, 0);
-    //    _isFlyUp = _speed <= 0 ? false : true;
-
-    //    //Quaternion initial = Quaternion.Euler(Vector3.zero);
-    //    Quaternion initial = this.GetComponent<RectTransform>().localRotation;
-    //    Quaternion target = Quaternion.Euler(_upRotation);
-    //    this.GetComponent<RectTransform>().localRotation = Quaternion.Lerp(initial, target, _rotateSpeed * Time.deltaTime);
-    //}
 
     [SerializeField]
     private float _idelUpPositionY;
